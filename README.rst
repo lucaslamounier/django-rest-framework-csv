@@ -16,7 +16,7 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install djangorestframework-csv
+    $ pip install https://github.com/lucaslamounier/django-rest-framework-csv.git
 
 Usage
 -----
