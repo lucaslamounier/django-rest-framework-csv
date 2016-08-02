@@ -46,8 +46,12 @@ class CSVRenderer(BaseRenderer):
 
         renderer_context = renderer_context or {}
         header = renderer_context.get('header', self.header)
+        request = renderer_context.get('request')
+        view = request.parser_context.get('view')
+        file_name = view.get_view_name().split(' ')[0]
+        response = renderer_context.get('response')
+        response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(file_name)
         labels = renderer_context.get('labels', self.labels)
-
         table = self.tablize(data, header=header, labels=labels)
         csv_buffer = StringIO()
         csv_writer = csv.writer(csv_buffer, **writer_opts)
